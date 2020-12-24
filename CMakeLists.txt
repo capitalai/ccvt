@@ -1,0 +1,5 @@
+cmake_minimum_required(VERSION 3.19)
+project(ccvt)
+add_executable(ccvt main.c ccvt.c com.c dir.c std.c bag.c lot.c sac.c str.c str_utf8.c str_file.c obj.c pin.c seq.c pod.c set.c key.c var.c var_text.c txt.c arg.c)
+install(TARGETS ccvt RUNTIME DESTINATION bin)
+install(DIRECTORY tc DESTINATION share/ccvt)
