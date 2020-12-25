@@ -66,3 +66,7 @@ http://dict.revised.moe.edu.tw/cbdic/
 - 「癥狀」不常用，不收錄
 - 部份「慾」字詞不常用，不收錄
 - 共收錄簡轉繁調整詞彙 3777 組
+
+## 關於原始碼
+
+只有 main.c ccvt.c ccvt.h 是主要的程式碼，其餘是個人的程式庫內容，但若是分開來要寫 CMakeLists.txt 會有些複雜，乾脆全部放在一起。
