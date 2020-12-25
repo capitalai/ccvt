@@ -4,8 +4,12 @@
 #include "ccl.h"
 #include "ccvt.h"
 
-#ifndef CCVT_DATA_DIR
+#define STR(s) #s
+
+#ifndef _CCVT_DATA_DIR
 #define CCVT_DATA_DIR "/usr/local/share/ccvt"
+#else
+#define CCVT_DATA_DIR STR(_CCVT_DATA_DIR)
 #endif
 
 #define DIR_SIZE 1024
