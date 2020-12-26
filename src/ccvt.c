@@ -21,7 +21,7 @@ static str* correct_str;
 static str* key_word;
 static str* source_word;
 static str* skip_word;
-static str* correct_word[MAX_CORRECT_LENGTH];
+static str* correct_word[MAX_CORRECT_LENGTH + 1];
 
 void ccvt_init(const char* data_dir);
 void ccvt_fini(void);
@@ -55,7 +55,7 @@ void ccvt_init(const char* data_dir) {
     source_word = str_init(pool, NULL);
     skip_word   = str_init(pool, NULL);
     
-    for(int i = 0; i < MAX_CORRECT_LENGTH; i++) correct_word[i] = str_init(pool, NULL);
+    for(int i = 0; i < MAX_CORRECT_LENGTH + 1; i++) correct_word[i] = str_init(pool, NULL);
 
     str_set(conf_path, data_dir, 0);
     str_add(conf_path, "/", 0);
@@ -194,7 +194,7 @@ static void correct_words(str* source, str* target) {
         
         if(v == NULL)        { str_add(target, x, 0); p = q; continue; }
         
-        size_t len_max = (size_t)v->v_ulli;
+        size_t len_max = (size_t)v->v_ulli; if(len_max > MAX_CORRECT_LENGTH) len_max = MAX_CORRECT_LENGTH;
         size_t len_now = 2;
 
         for(size_t i = len_now; i <= len_max; i++) str_set(correct_word[i], x, 0);  // make a, a, a ...
