@@ -1,5 +1,5 @@
 # ccvt
-chinese converter for utf-8 encoding
+chinese converter for utf-8 encoded text files
 
 ## 簡介
 
