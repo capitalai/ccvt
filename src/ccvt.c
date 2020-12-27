@@ -35,7 +35,7 @@ static void   correct_words(str* source, str* target);
 
 static size_t _load_correct_len(var* o, var_l* p);
 static bool   _is_skip_word(text_t s);
-static int _str_cmp_end(text_t a, text_t b);
+static int    _str_cmp_end(text_t a, text_t b);
 
 void ccvt_init(const char* data_dir) {
     
@@ -259,9 +259,9 @@ static size_t _load_correct_len(var* o, var_l* p) {
     
     str_set(key_word, p->n, 0);
 
-    size_t p1 = str_utf8_next(key_word, 0);
+    size_t p1 = str_utf8_next(key_word, 0); if(p1 == 0) return 1;
 
-    char   k[p1 + 1]; text_copy(k, p->n, p1); k[p1] = 0;
+    char   k[5]; text_copy(k, p->n, p1); k[p1] = 0;  // p1 < 5
 
     size_t v = str_utf8_length(key_word);
 
