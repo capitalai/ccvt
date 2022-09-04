@@ -8,6 +8,8 @@ set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -D_CCVT_DATA_DIR=${CMAKE_INSTALL_PREFIX}/sha
 endif()
 set(CMAKE_C_STANDARD 17)
 include_directories(BEFORE "." "/usr/local/include/c++/v1")
+# link_directories(BEFORE "/usr/local/lib")
+# link_libraries(ccl)
 file(GLOB PROJECT_SOURCE_FILES "src/*.c")
 add_executable(${PROJECT_NAME} ${PROJECT_SOURCE_FILES})
 install(TARGETS ${PROJECT_NAME} RUNTIME DESTINATION bin)
