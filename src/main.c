@@ -4,12 +4,12 @@
 #include "ccl.h"
 #include "ccvt.h"
 
-#define STR(s) #s
+#define STR_STR(s) STR(s)
 
 #ifndef _CCVT_DATA_DIR
-#define CCVT_DATA_DIR "/usr/local/share/ccvt"
+#define CCVT_DATA_DIR /usr/local/share/ccvt
 #else
-#define CCVT_DATA_DIR STR(_CCVT_DATA_DIR)
+#define CCVT_DATA_DIR _CCVT_DATA_DIR
 #endif
 
 #define DIR_SIZE 1024
@@ -48,7 +48,16 @@ int main(int argc, const char * argv[]) {
 
     }
 
-    if(find_data_dir(data_dir, convert_mode) == false) { note("convert mode '"); note(convert_mode); note("' is not existed"); term(0); }
+    if(find_data_dir(data_dir, convert_mode) == false) { 
+        
+        note("convert mode '"); 
+        note(convert_mode); 
+        note("' (");
+        note(data_dir); 
+        note(") is not existed\n"); 
+        term(0); 
+        
+    }
 
     // main work
 
@@ -104,7 +113,7 @@ static bool find_data_dir(char* data_dir, text_t convert_mode) {
 
     text_t env = getenv("ccvt");
 
-    text_copy(data_dir, env ? env : CCVT_DATA_DIR, DIR_SIZE);
+    text_copy(data_dir, env ? env : STR_STR(CCVT_DATA_DIR), DIR_SIZE);
 
     size_t len = strlen(data_dir);
     
